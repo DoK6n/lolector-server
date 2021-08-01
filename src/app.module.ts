@@ -5,9 +5,16 @@ import { UsersModule } from './users/users.module';
 
 import { LoggerInterceptor } from './common';
 import { AuthModule } from './auth/auth.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import * as ormconfig from '../ormconfig';
 
 @Module({
-  imports: [UsersModule, ConfigModule.forRoot({ envFilePath: '.development.env', isGlobal: true }), AuthModule],
+  imports: [
+    UsersModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+    AuthModule,
+    TypeOrmModule.forRoot(ormconfig),
+  ],
   controllers: [],
   providers: [
     {
